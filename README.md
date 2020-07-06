@@ -1,4 +1,4 @@
-# EU_ICU_indicators
+# EU ICU indicators
 ## Design recommendations for sharing dynamic ICU data in EU cross border health information systems
 
 Crises are often times of rethinking the current system and the breeding ground of innovation. Arguably one of the sectors most defined by and created for emergencies is the health sector. 
