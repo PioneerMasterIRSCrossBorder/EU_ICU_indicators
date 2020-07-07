@@ -1,0 +1,175 @@
+@prefix : <https://mariaclaudia.it/ICU_model#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://mariaclaudia.it/ICU_model#> .
+
+<https://mariaclaudia.it/ICU_model#> rdf:type owl:Ontology ;
+                                      owl:imports <http://data.europa.eu/m8g/> ,
+                                                  <http://www.w3.org/ns/locn> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.w3.org/ns/locn#address
+<http://www.w3.org/ns/locn#address> rdf:type owl:ObjectProperty ;
+                                    rdfs:domain <http://purl.org/dc/terms/Location> .
+
+
+###  http://www.w3.org/ns/locn#location
+<http://www.w3.org/ns/locn#location> rdf:type owl:ObjectProperty ;
+                                     rdfs:range <http://www.w3.org/ns/locn#Geometry> .
+
+
+###  https://mariaclaudia.it/ICU_model#OWLObjectProperty_513fa314_3b3f_4897_83d0_64239eb09cb1
+:OWLObjectProperty_513fa314_3b3f_4897_83d0_64239eb09cb1 rdf:type owl:ObjectProperty ;
+                                                        rdfs:domain <https://mariaclaudia.it/ICU_model##OWLClass_a66d0d0f_3d7e_4248_80b1_e45e14607214> ;
+                                                        rdfs:range :OWLClass_85d921f2_d823_4f5e_a634_23bc19669b9e ;
+                                                        rdfs:label "hasSite"@en .
+
+
+###  https://mariaclaudia.it/ICU_model#OWLObjectProperty_7c4a29c7_e055_47a6_9c5b_d08f7d6f9ab2
+:OWLObjectProperty_7c4a29c7_e055_47a6_9c5b_d08f7d6f9ab2 rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf owl:topObjectProperty ;
+                                                        rdfs:domain <http://purl.org/dc/terms/Location> ;
+                                                        rdfs:range <http://www.w3.org/ns/locn#Geometry> ;
+                                                        rdfs:label "hasGeometry"@en .
+
+
+###  https://mariaclaudia.it/ICU_model#OWLObjectProperty_eaaba330_6b42_4644_a48d_44fec82e80db
+:OWLObjectProperty_eaaba330_6b42_4644_a48d_44fec82e80db rdf:type owl:ObjectProperty ;
+                                                        rdfs:subPropertyOf owl:topObjectProperty ;
+                                                        rdfs:domain :OWLClass_85d921f2_d823_4f5e_a634_23bc19669b9e ;
+                                                        rdfs:label "isSite"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLObjectProperty_19cf715b_a2e0_4211_94cd_56304c35966f
+<https://mariaclaudia.it/ICU_model##OWLObjectProperty_19cf715b_a2e0_4211_94cd_56304c35966f> rdf:type owl:ObjectProperty ;
+                                                                                            rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                                            rdfs:domain :OWLClass_85d921f2_d823_4f5e_a634_23bc19669b9e ;
+                                                                                            rdfs:range <https://mariaclaudia.it/ICU_model##OWLClass_ac2322fb_7517_4e7d_9f57_40f0e4e568a3> ;
+                                                                                            rdfs:label "hasUnit"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLObjectProperty_7cd86af8_5038_4602_b599_c0070dfded02
+<https://mariaclaudia.it/ICU_model##OWLObjectProperty_7cd86af8_5038_4602_b599_c0070dfded02> rdf:type owl:ObjectProperty ;
+                                                                                            rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                                            rdfs:domain <http://purl.org/dc/terms/Location> ;
+                                                                                            rdfs:range :OWLClass_85d921f2_d823_4f5e_a634_23bc19669b9e ,
+                                                                                                       <https://mariaclaudia.it/ICU_model##OWLClass_a66d0d0f_3d7e_4248_80b1_e45e14607214> ;
+                                                                                            rdfs:label "hasLocation"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLObjectProperty_9294d4a5_0747_4ba2_99a4_d81ec3c04b6c
+<https://mariaclaudia.it/ICU_model##OWLObjectProperty_9294d4a5_0747_4ba2_99a4_d81ec3c04b6c> rdf:type owl:ObjectProperty ;
+                                                                                            rdfs:domain <https://mariaclaudia.it/ICU_model##OWLClass_ac2322fb_7517_4e7d_9f57_40f0e4e568a3> ;
+                                                                                            rdfs:range <https://mariaclaudia.it/ICU_model##OWLClass_f2cca480_bb14_44d2_9d30_1aa5185482f9> ;
+                                                                                            rdfs:label "hasService"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLObjectProperty_b36e8a56_9bae_412c_933c_70aca8fee37f
+<https://mariaclaudia.it/ICU_model##OWLObjectProperty_b36e8a56_9bae_412c_933c_70aca8fee37f> rdf:type owl:ObjectProperty ;
+                                                                                            rdfs:domain <https://mariaclaudia.it/ICU_model##OWLClass_0c080d0a_338d_4aba_b474_6470feafebf9> ;
+                                                                                            rdfs:range <https://mariaclaudia.it/ICU_model##OWLClass_540612e8_b479_43a8_97b8_2ee73aff46e1> ;
+                                                                                            rdfs:label "hasICUType"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLObjectProperty_c7c8bc82_fae5_4b6d_bb8f_5db160e6c05d
+<https://mariaclaudia.it/ICU_model##OWLObjectProperty_c7c8bc82_fae5_4b6d_bb8f_5db160e6c05d> rdf:type owl:ObjectProperty ;
+                                                                                            rdfs:domain <https://mariaclaudia.it/ICU_model##OWLClass_a66d0d0f_3d7e_4248_80b1_e45e14607214> ,
+                                                                                                        <https://mariaclaudia.it/ICU_model##OWLClass_ac2322fb_7517_4e7d_9f57_40f0e4e568a3> ;
+                                                                                            rdfs:range <http://schema.org/contactPoint> ;
+                                                                                            rdfs:label "hasContactPoint"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.w3.org/ns/locn#adminUnitL1
+<http://www.w3.org/ns/locn#adminUnitL1> rdf:type owl:DatatypeProperty ;
+                                        rdfs:subPropertyOf owl:topDataProperty ;
+                                        rdfs:domain <http://www.w3.org/ns/locn#Address> ;
+                                        rdfs:range rdfs:Literal .
+
+
+###  http://www.w3.org/ns/locn#adminUnitL2
+<http://www.w3.org/ns/locn#adminUnitL2> rdf:type owl:DatatypeProperty ;
+                                        rdfs:subPropertyOf owl:topDataProperty ;
+                                        rdfs:domain <http://www.w3.org/ns/locn#Address> ;
+                                        rdfs:range rdfs:Literal .
+
+
+###  http://www.w3.org/ns/locn#postCode
+<http://www.w3.org/ns/locn#postCode> rdf:type owl:DatatypeProperty ;
+                                     rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLDataProperty_d0e0a14e_43fd_4375_bc9f_d54df0695e5b
+<https://mariaclaudia.it/ICU_model##OWLDataProperty_d0e0a14e_43fd_4375_bc9f_d54df0695e5b> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <https://mariaclaudia.it/ICU_model##OWLClass_0c080d0a_338d_4aba_b474_6470feafebf9> ;
+                                                                                          rdfs:range xsd:int ;
+                                                                                          rdfs:label "number_of_full_beds"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLDataProperty_e51c650b_73a1_48b2_9d8c_43c1ceffce7b
+<https://mariaclaudia.it/ICU_model##OWLDataProperty_e51c650b_73a1_48b2_9d8c_43c1ceffce7b> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <https://mariaclaudia.it/ICU_model##OWLClass_0c080d0a_338d_4aba_b474_6470feafebf9> ;
+                                                                                          rdfs:range xsd:int ;
+                                                                                          rdfs:label "number_of_total_beds"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLDataProperty_fd958795_5d1d_4199_8142_a728fce9ee14
+<https://mariaclaudia.it/ICU_model##OWLDataProperty_fd958795_5d1d_4199_8142_a728fce9ee14> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <https://mariaclaudia.it/ICU_model##OWLClass_0c080d0a_338d_4aba_b474_6470feafebf9> ;
+                                                                                          rdfs:range xsd:int ;
+                                                                                          rdfs:label "number_of_free_beds"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/dc/terms/Location
+<http://purl.org/dc/terms/Location> rdf:type owl:Class .
+
+
+###  http://schema.org/contactPoint
+<http://schema.org/contactPoint> rdf:type owl:Class .
+
+
+###  https://mariaclaudia.it/ICU_model#OWLClass_85d921f2_d823_4f5e_a634_23bc19669b9e
+:OWLClass_85d921f2_d823_4f5e_a634_23bc19669b9e rdf:type owl:Class ;
+                                               rdfs:label "Site"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLClass_0c080d0a_338d_4aba_b474_6470feafebf9
+<https://mariaclaudia.it/ICU_model##OWLClass_0c080d0a_338d_4aba_b474_6470feafebf9> rdf:type owl:Class ;
+                                                                                   rdfs:subClassOf <https://mariaclaudia.it/ICU_model##OWLClass_f2cca480_bb14_44d2_9d30_1aa5185482f9> ;
+                                                                                   rdfs:label "ICUService"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLClass_540612e8_b479_43a8_97b8_2ee73aff46e1
+<https://mariaclaudia.it/ICU_model##OWLClass_540612e8_b479_43a8_97b8_2ee73aff46e1> rdf:type owl:Class ;
+                                                                                   rdfs:label "ICUType"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLClass_a66d0d0f_3d7e_4248_80b1_e45e14607214
+<https://mariaclaudia.it/ICU_model##OWLClass_a66d0d0f_3d7e_4248_80b1_e45e14607214> rdf:type owl:Class ;
+                                                                                   rdfs:label "Hospital"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLClass_ac2322fb_7517_4e7d_9f57_40f0e4e568a3
+<https://mariaclaudia.it/ICU_model##OWLClass_ac2322fb_7517_4e7d_9f57_40f0e4e568a3> rdf:type owl:Class ;
+                                                                                   rdfs:label "Unit"@en .
+
+
+###  https://mariaclaudia.it/ICU_model##OWLClass_f2cca480_bb14_44d2_9d30_1aa5185482f9
+<https://mariaclaudia.it/ICU_model##OWLClass_f2cca480_bb14_44d2_9d30_1aa5185482f9> rdf:type owl:Class ;
+                                                                                   rdfs:label "Service"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
