@@ -45,9 +45,14 @@ paths:
         schema:
           $ref: '#/xxxx'
       responses:
-        <<: *common-responses
         '200':
-          $ref: '#/xxxx'
+        description: A JSON array of ICU availability data
+        content:
+          application/json:
+            schema: 
+              type: array
+              items: 
+                type: string
 
   /country/{country_code}/{admin_level_1}:
     get:
@@ -68,13 +73,14 @@ paths:
         in: path
         required: true  
       responses:
-        <<: *common-responses
-        "200":
-           description: Returns the information on a parameter.
-           content:
-             application/json:
-               schema:
-                 $ref: '#/xxxx'
+        '200':
+        description: A JSON array of ICU availability data
+        content:
+          application/json:
+            schema: 
+              type: array
+              items: 
+                type: string
   
   /country/{country_code}/{admin_level_1}/{admin_level_2}:
     get:
@@ -100,41 +106,15 @@ paths:
         in: path
         required: true  
       responses:
-        <<: *common-responses
-        "200":
-           description: Returns the information on a parameter.
-           content:
-             application/json:
-               schema:
-                 $ref: '#/xxxx'
+        '200':
+        description: A JSON array of ICU availability data
+        content:
+          application/json:
+            schema: 
+              type: array
+              items: 
+                type: string
     
-  /country/{country_code}/hospital/{hospital_id}:
-    get:
-      description: This endpoint helps to retrieve the info related to the ICU indicators at a specific hospital level. It is necessary to express the country because the id can be not unique
-      operationId: xxx
-      tags:
-        - ICUdata
-      parameters:
-      - $ref: '#/components/parameters/AcceptLanguage'
-      - name: hospital_id
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true
-      - name: country_code
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true  
-      responses:
-        <<: *common-responses
-        "200":
-           description: Returns the information from the hospital.
-           content:
-             application/json:
-               schema:
-                 $ref: '#/xxxx'
-  
   /country/{country_code}/hospital/{hospital_id}:  
     get:
       description: This endpoint helps to retrieve the contact pint (email and telephone number) and address info related to a specific hospital and eventually a specific unit
@@ -154,28 +134,16 @@ paths:
         in: path
         required: true  
       responses:
-        <<: *common-responses
-        "200":
-           description: Returns the information on a parameter.
-           content:
-             application/json:
-               schema:
-                 $ref: '#/xxxx'
+        responses:
+        '200':
+        description: A JSON array of ICU availability data
+        content:
+          application/json:
+            schema: 
+              type: array
+              items: 
+                type: string
 
-components:
 
-  examples:
-    AdministrativeUnit:
-      summary: Una unità amministrativa
-      value: &AdministrativeUnitPerugia
-        country_id: ITA
-        country_name: Italia
-        region_id: '10'
-        region_name: Umbria
-        province_id: '054'
-        province_name: Perugia
-        province_acronym: PG
-        city_id: '054039'
-        city_name: Perugia
     
     
