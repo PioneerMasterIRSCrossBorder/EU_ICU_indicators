@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: EU ICU availability API 
+  x-summary: EU ICU availability API 
+  contact:
+    name: Maria Claudia Bodino, Viktor, Pablo, Stefan
+  description: |-
+    This API provides different indicators related to the Intensive Care Unit availability in the EU member states at different Administrative Level 
+    The info provided are modeled on the ontology published on github at
+
+    Using content-negotiation  and relative header (Accept, Accept-Language) is possibile to:
+    -  media-type: application/json, text/csv.
+    
+servers:
+  - url: https://localhost/covid-19_ICU/v1
+tags:
+  - name: ICUdata
+    description: Returns ICU availability data at different level.
+  - name: Contact
+    description: Returns contact and address of hospitals and related units.
+
+
+paths:
+  /country/{country_code}:
+    get:
+      tags:
+        - ICUdata
+      description: This endpoint helps to retrieve the info related to the ICU indicators at country level
+      operationId: xxx
+      parameters:
+      - name: country
+        description: The two letter county https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Country_codes
+        schema:
+          type: string
+          example: IT, BE
+        in: path
+        required: true
+      - name: phenomenon_time_start
+        in: query
+        schema:
+          $ref: '#/xxxx'
+      - name: phenomenon_time_end
+        in: query
+        schema:
+          $ref: '#/xxxx'
+      responses:
+        <<: *common-responses
+        '200':
+          $ref: '#/xxxx'
+
+  /country/{country_code}/{admin_level_1}:
+    get:
+      description: This endpoint helps to retrieve the info related to the ICU indicators at the specific admin level 1
+      operationId: xxx
+      tags:
+        - ICUdata
+      parameters:
+      - $ref: '#/components/parameters/AcceptLanguage'
+      - name: country_code
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true
+      - name: admin_level_1
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true  
+      responses:
+        <<: *common-responses
+        "200":
+           description: Returns the information on a parameter.
+           content:
+             application/json:
+               schema:
+                 $ref: '#/xxxx'
+  
+  /country/{country_code}/{admin_level_1}/{admin_level_2}:
+    get:
+      description: This endpoint helps to retrieve the info related to the ICU indicators at a certain specific admin level 2
+      operationId: xxx
+      tags:
+        - ICUdata
+      parameters:
+      - $ref: '#/components/parameters/AcceptLanguage'
+      - name: country_code
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true
+      - name: admin_level_1
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true  
+      - name: admin_level_2
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true  
+      responses:
+        <<: *common-responses
+        "200":
+           description: Returns the information on a parameter.
+           content:
+             application/json:
+               schema:
+                 $ref: '#/xxxx'
+    
+  /country/{country_code}/hospital/{hospital_id}:
+    get:
+      description: This endpoint helps to retrieve the info related to the ICU indicators at a specific hospital level. It is necessary to express the country because the id can be not unique
+      operationId: xxx
+      tags:
+        - ICUdata
+      parameters:
+      - $ref: '#/components/parameters/AcceptLanguage'
+      - name: hospital_id
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true
+      - name: country_code
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true  
+      responses:
+        <<: *common-responses
+        "200":
+           description: Returns the information from the hospital.
+           content:
+             application/json:
+               schema:
+                 $ref: '#/xxxx'
+  
+  /country/{country_code}/hospital/{hospital_id}:  
+    get:
+      description: This endpoint helps to retrieve the contact pint (email and telephone number) and address info related to a specific hospital and eventually a specific unit
+      operationId: xxx
+      tags:
+        - metadata
+      parameters:
+      - $ref: '#/components/parameters/AcceptLanguage'
+      - name: country_code
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true
+      - name: admin_level_1
+        schema:
+          $ref: '#/xxxx'
+        in: path
+        required: true  
+      responses:
+        <<: *common-responses
+        "200":
+           description: Returns the information on a parameter.
+           content:
+             application/json:
+               schema:
+                 $ref: '#/xxxx'
+
+components:
+
+  examples:
+    AdministrativeUnit:
+      summary: Una unità amministrativa
+      value: &AdministrativeUnitPerugia
+        country_id: ITA
+        country_name: Italia
+        region_id: '10'
+        region_name: Umbria
+        province_id: '054'
+        province_name: Perugia
+        province_acronym: PG
+        city_id: '054039'
+        city_name: Perugia
+    
+    
