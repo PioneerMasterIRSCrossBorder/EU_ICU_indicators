@@ -354,12 +354,33 @@
     
 
 
+    <!-- https://mariaclaudia.it/ICU_model#OWLDataProperty_2cbf1963_82d1_45a6_bc73_c455c78ee273 -->
+
+    <owl:DatatypeProperty rdf:about="https://mariaclaudia.it/ICU_model#OWLDataProperty_2cbf1963_82d1_45a6_bc73_c455c78ee273">
+        <rdfs:domain rdf:resource="https://mariaclaudia.it/ICU_model##OWLClass_a66d0d0f_3d7e_4248_80b1_e45e14607214"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:label xml:lang="en">hospital id</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- https://mariaclaudia.it/ICU_model#OWLDataProperty_6a6bee0d_c223_4271_8658_08fb3f4bf6cf -->
 
     <owl:DatatypeProperty rdf:about="https://mariaclaudia.it/ICU_model#OWLDataProperty_6a6bee0d_c223_4271_8658_08fb3f4bf6cf">
         <rdfs:domain rdf:resource="http://schema.org/contactPoint"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label xml:lang="en">telephone</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mariaclaudia.it/ICU_model#OWLDataProperty_6cee64d4_1cb5_4004_b90e_23ff760cc8d6 -->
+
+    <owl:DatatypeProperty rdf:about="https://mariaclaudia.it/ICU_model#OWLDataProperty_6cee64d4_1cb5_4004_b90e_23ff760cc8d6">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="https://mariaclaudia.it/ICU_model##OWLClass_ac2322fb_7517_4e7d_9f57_40f0e4e568a3"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:label xml:lang="en">unit id</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -627,8 +648,7 @@
 
 &lt;h3&gt;&lt;strong&gt;10. About SEMIC&lt;/strong&gt;&lt;/h3&gt;
 
-&lt;p&gt;Visit the SEMIC collection on&amp;nbsp;&lt;a href=&quot;https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/about&quot; target=&quot;_blank&quot;&gt;Joinup&lt;/a&gt;&amp;nbsp;or check out our&amp;nbsp;&lt;a href=&quot;https://ec.europa.eu/isa2/actions/improving-semantic-interoperability-european-egovernment-systems_en&quot;&gt;SEMIC page&lt;/a&gt;&amp;nbsp;on the ISA²&amp;nbsp;website.&lt;/p&gt;
-</terms:description>
+&lt;p&gt;Visit the SEMIC collection on&amp;nbsp;&lt;a href=&quot;https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/about&quot; target=&quot;_blank&quot;&gt;Joinup&lt;/a&gt;&amp;nbsp;or check out our&amp;nbsp;&lt;a href=&quot;https://ec.europa.eu/isa2/actions/improving-semantic-interoperability-european-egovernment-systems_en&quot;&gt;SEMIC page&lt;/a&gt;&amp;nbsp;on the ISA²&amp;nbsp;website.&lt;/p&gt;</terms:description>
         <terms:hasVersion rdf:resource="http://data.europa.eu/w21/e013e885-9a0f-41eb-bc75-a075c791c1a9"/>
         <terms:hasVersion rdf:resource="http://data.europa.eu/w21/10754c4a-e6c2-4d42-8504-377d38246459"/>
         <terms:hasVersion rdf:resource="http://data.europa.eu/w21/50db2241-751d-432c-a4ec-d2144f593224"/>
@@ -636,7 +656,7 @@
         <terms:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-09-03T08:25:50Z</terms:issued>
         <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-01-09T16:35:02Z</terms:modified>
         <terms:publisher rdf:resource="http://data.europa.eu/w21/b1ffa7dc-07b7-4f85-9c3c-8850087b506c"/>
-        <terms:title xml:lang="en">e-Government Core Vocabularies </terms:title>
+        <terms:title xml:lang="en">e-Government Core Vocabularies</terms:title>
         <terms:type rdf:resource="http://data.europa.eu/dr8/SemanticInteroperabilitySpecification"/>
         <adms:status rdf:resource="http://purl.org/adms/status/UnderDevelopment"/>
         <dcat:contactPoint rdf:resource="http://data.europa.eu/w21/fc7ac8d0-b843-49fe-bcd1-7beb1825ce68"/>

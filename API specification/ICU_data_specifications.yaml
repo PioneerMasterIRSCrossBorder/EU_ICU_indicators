@@ -1,13 +1,14 @@
 openapi: 3.0.0
 info:
-  version: 0.0.1
+  version: 0.0.1beta
   title: EU ICU availability API 
   x-summary: EU ICU availability API 
   contact:
     name: Maria Claudia Bodino, Viktor, Pablo, Stefan
   description: |-
     This API provides different indicators related to the Intensive Care Unit availability in the EU member states at different Administrative Level 
-    The info provided are modeled on the ontology published on github at
+    
+    The info provided are modeled on the ontology published on github at https://github.com/PioneerMasterIRSCrossBorder/EU_ICU_indicators/tree/master/Ontologies 
 
     Using content-negotiation  and relative header (Accept, Accept-Language) is possibile to:
     -  media-type: application/json, text/csv.
@@ -17,7 +18,7 @@ servers:
 tags:
   - name: ICUdata
     description: Returns ICU availability data at different level.
-  - name: Contact
+  - name: ContactData
     description: Returns contact and address of hospitals and related units.
 
 
@@ -29,7 +30,7 @@ paths:
       description: This endpoint helps to retrieve the info related to the ICU indicators at country level
       operationId: xxx
       parameters:
-      - name: country
+      - name: country_code
         description: The two letter county https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Country_codes
         schema:
           type: string
@@ -39,15 +40,15 @@ paths:
       - name: phenomenon_time_start
         in: query
         schema:
-          $ref: '#/xxxx'
+          $ref: '#/components/schemas/Temporal'
       - name: phenomenon_time_end
         in: query
         schema:
-          $ref: '#/xxxx'
+          $ref: '#/components/schemas/Temporal'
       responses:
         '200':
         description: A JSON array of ICU availability data
-        content:
+        content: '#/components/schemas/ObservationDataset'
           application/json:
             schema: 
               type: array
@@ -120,7 +121,7 @@ paths:
       description: This endpoint helps to retrieve the contact pint (email and telephone number) and address info related to a specific hospital and eventually a specific unit
       operationId: xxx
       tags:
-        - metadata
+        - ContactData
       parameters:
       - $ref: '#/components/parameters/AcceptLanguage'
       - name: country_code
@@ -143,7 +144,51 @@ paths:
               type: array
               items: 
                 type: string
+  schemas:
+    Observations:
+      description: |-
+        This is a collection of observations, together with metadata useful
+        to define a set of common properties for all the observations.
 
+        For the AdministrativeUnit, metadata include locality information
+      properties:
+        _meta:
+          $ref: '#/components/schemas/Metadata'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Observation'
+    ObservationDataset:
+      description: |-
+        An ObservationDataset contains a list of Observations: one for
+        each AdministrativeUnit.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Observations'
+    Metadata:
+      description: |-
+        Metadata associated to a given observation collection.
+      properties:
+        administrative_unit:
+          $ref: '#/components/schemas/AdministrativeUnit'
+        phenomenon_time_start:
+          $ref: '#/components/schemas/Temporal'
+        phenomenon_time_end:
+          $ref: '#/components/schemas/Temporal'
+        source:
+          type: string
+          format: uri
+          description: |-
+            The information source.
+    Temporal:
+      description: A temporal data that can be a date or a date-time
+      oneOf:
+        - type: string
+          format: date
+        - type: string
+          format: date-time        
 
     
     
