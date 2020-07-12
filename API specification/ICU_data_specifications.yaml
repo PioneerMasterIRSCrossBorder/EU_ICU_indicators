@@ -1,42 +1,35 @@
 openapi: 3.0.0
 info:
   version: 0.0.1beta
-  title: EU ICU availability API 
-  x-summary: EU ICU availability API 
+  title: EU ICU availability API
+  x-summary: EU ICU availability API
   contact:
     name: Maria Claudia Bodino, Viktor, Pablo, Stefan
+    email: mariaclaudia@teamdigitale.governo.it
   description: |-
-    This API provides different indicators related to the Intensive Care Unit availability in the EU member states at different Administrative Level 
-    
-    The info provided are modeled on the ontology published on github at https://github.com/PioneerMasterIRSCrossBorder/EU_ICU_indicators/tree/master/Ontologies 
-
-    Using content-negotiation  and relative header (Accept, Accept-Language) is possibile to:
-    -  media-type: application/json, text/csv.
-    
+    This API provides different indicators related to the Intensive Care Unit availability in the EU member states
+    at different Administrative Level.
+    The info provided are modeled on the [ontology published on github](
+    https://github.com/PioneerMasterIRSCrossBorder/EU_ICU_indicators/tree/master/Ontologies)
+    Using content-negotiation  and relative request header (Accept, Accept-Language) is possibile to
+    retrieve different media-type and languages (Eg. application/json, text/csv).
 servers:
   - url: https://localhost/covid-19_ICU/v1
+    description: development
 tags:
   - name: ICUdata
     description: Returns ICU availability data at different level.
   - name: ContactData
     description: Returns contact and address of hospitals and related units.
-
-
 paths:
   /country/{country_code}:
     get:
       tags:
         - ICUdata
       description: This endpoint helps to retrieve the info related to the ICU indicators at country level
-      operationId: xxx
+      operationId: get_country_indicators
       parameters:
-      - name: country_code
-        description: The two letter county https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Country_codes
-        schema:
-          type: string
-          example: IT, BE
-        in: path
-        required: true
+      - $ref: '#/components/parameters/CountryCode'
       - name: phenomenon_time_start
         in: query
         schema:
@@ -47,109 +40,115 @@ paths:
           $ref: '#/components/schemas/Temporal'
       responses:
         '200':
-        description: A JSON array of ICU availability data
-        content: '#/components/schemas/ObservationDataset'
-          application/json:
-            schema: 
-              type: array
-              items: 
-                type: string
-
+          description: A JSON array of ICU availability data
+          content: # '#/components/schemas/ObservationDataset'
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
   /country/{country_code}/{admin_level_1}:
     get:
       description: This endpoint helps to retrieve the info related to the ICU indicators at the specific admin level 1
-      operationId: xxx
+      operationId: get_level1_indicators
       tags:
         - ICUdata
       parameters:
       - $ref: '#/components/parameters/AcceptLanguage'
-      - name: country_code
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true
-      - name: admin_level_1
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true  
+      - $ref: '#/components/parameters/CountryCode'
+      - $ref: '#/components/parameters/AdminLevel1'
       responses:
         '200':
-        description: A JSON array of ICU availability data
-        content:
-          application/json:
-            schema: 
-              type: array
-              items: 
-                type: string
-  
+          description: A JSON array of ICU availability data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
   /country/{country_code}/{admin_level_1}/{admin_level_2}:
     get:
       description: This endpoint helps to retrieve the info related to the ICU indicators at a certain specific admin level 2
-      operationId: xxx
+      operationId: get_level2_indicators
       tags:
         - ICUdata
       parameters:
       - $ref: '#/components/parameters/AcceptLanguage'
-      - name: country_code
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true
-      - name: admin_level_1
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true  
-      - name: admin_level_2
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true  
+      - $ref: '#/components/parameters/CountryCode'
+      - $ref: '#/components/parameters/AdminLevel1'
+      - $ref: '#/components/parameters/AdminLevel2'
       responses:
         '200':
-        description: A JSON array of ICU availability data
-        content:
-          application/json:
-            schema: 
-              type: array
-              items: 
-                type: string
-    
-  /country/{country_code}/hospital/{hospital_id}:  
+          description: A JSON array of ICU availability data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /country/{country_code}/hospital/{hospital_id}:
     get:
-      description: This endpoint helps to retrieve the contact pint (email and telephone number) and address info related to a specific hospital and eventually a specific unit
-      operationId: xxx
+      description: |-
+         This endpoint helps to retrieve the contact point (email and telephone number) and address info
+         related to a specific hospital and eventually a specific unit
+      operationId: get_hospital_information
       tags:
         - ContactData
       parameters:
       - $ref: '#/components/parameters/AcceptLanguage'
-      - name: country_code
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true
-      - name: admin_level_1
-        schema:
-          $ref: '#/xxxx'
-        in: path
-        required: true  
+      - $ref: '#/components/parameters/CountryCode'
+      - $ref: '#/components/parameters/AdminLevel1'
       responses:
         responses:
         '200':
         description: A JSON array of ICU availability data
         content:
           application/json:
-            schema: 
+            schema:
               type: array
-              items: 
+              items:
                 type: string
+components:
+  parameters:
+    AdminLevel1:
+        name: admin_level_1
+        schema:
+          type: string
+          enum:
+          - nuts1
+          - nuts2
+          - writeme
+        in: path
+        required: true
+    AdminLevel2:
+        name: admin_level_2
+        schema:
+          type: string
+          enum:
+          - nuts1
+          - nuts2
+          - writeme
+        in: path
+        required: true
+    CountryCode:
+      description: |-
+        The two letter county https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Country_codes
+      name: country_code
+      schema:
+          $ref: '#/components/schemas/CountryCodes'
+      in: path
+      required: true
   schemas:
+    CountryCodes:
+      type: string
+      enum:
+      - it
+      - en
+      - de
     Observations:
       description: |-
         This is a collection of observations, together with metadata useful
         to define a set of common properties for all the observations.
-
         For the AdministrativeUnit, metadata include locality information
       properties:
         _meta:
@@ -188,7 +187,4 @@ paths:
         - type: string
           format: date
         - type: string
-          format: date-time        
-
-    
-    
+          format: date-time
