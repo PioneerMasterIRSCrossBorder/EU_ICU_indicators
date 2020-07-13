@@ -10,7 +10,8 @@ info:
     This API provides different indicators related to the Intensive Care Unit availability in the EU member states
     at different Administrative Level.
     The info provided are modeled on the [ontology published on github](
-    https://github.com/PioneerMasterIRSCrossBorder/EU_ICU_indicators/tree/master/Ontologies)
+    https://github.com/PioneerMasterIRSCrossBorder/EU_ICU_indicators/tree/master/Ontologies). Related to the purpose of the research, a cross-border classification is represented by the NUTS classification (Nomenclature of territorial units for statistics) provided by Eurostat that provides a hierarchical system based also on population thresholds for the purpose of socio- economics analysis of the regions (cite https://data.europa.eu/euodp/en/data/dataset/ESTAT-NUTS-classification ). 
+    Furthermore, Eurostat publishes the NUTS classification in Linked Data (add citation https://ec.europa.eu/eurostat/web/nuts/linked-open-data) and a navigable version of the classification is provided at the following link: https://ipsoeu.github.io/ramon-ld/nuts  
     Using content-negotiation  and relative request header (Accept, Accept-Language) is possibile to
     retrieve different media-type and languages (Eg. application/json, text/csv).
 servers:
@@ -26,7 +27,7 @@ paths:
     get:
       tags:
         - ICUdata
-      description: This endpoint helps to retrieve the info related to the ICU indicators at country level
+      description: "This endpoint helps to retrieve the info related to the ICU indicators at country level"
       operationId: get_country_indicators
       parameters:
       - $ref: '#/components/parameters/CountryCode'
@@ -41,20 +42,19 @@ paths:
       responses:
         '200':
           description: A JSON array of ICU availability data
-          content: # '#/components/schemas/ObservationDataset'
+          content: 
             application/json:
               schema:
                 type: array
                 items:
-                  type: string
+                  $ref: '#/components/responds/ICUData'
   /country/{country_code}/{admin_level_1}:
     get:
-      description: This endpoint helps to retrieve the info related to the ICU indicators at the specific admin level 1
-      operationId: get_level1_indicators
       tags:
         - ICUdata
+      description: "This endpoint helps to retrieve the info related to the ICU indicators at country level and at the specific admin level 1"
+      operationId: get_level1_indicators
       parameters:
-      - $ref: '#/components/parameters/AcceptLanguage'
       - $ref: '#/components/parameters/CountryCode'
       - $ref: '#/components/parameters/AdminLevel1'
       responses:
@@ -65,18 +65,17 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
+                  $ref: '#/components/responses/ICUData'
   /country/{country_code}/{admin_level_1}/{admin_level_2}:
     get:
-      description: This endpoint helps to retrieve the info related to the ICU indicators at a certain specific admin level 2
-      operationId: get_level2_indicators
       tags:
         - ICUdata
+      description: "This endpoint helps to retrieve the info related to the ICU indicators at country level, at the specific admin level 1 and at a certain specific admin level 2"
+      operationId: get_level2_indicators
       parameters:
-      - $ref: '#/components/parameters/AcceptLanguage'
-      - $ref: '#/components/parameters/CountryCode'
-      - $ref: '#/components/parameters/AdminLevel1'
-      - $ref: '#/components/parameters/AdminLevel2'
+        - $ref: '#/components/parameters/CountryCode'
+        - $ref: '#/components/parameters/AdminLevel1'
+        - $ref: '#/components/parameters/AdminLevel2'
       responses:
         '200':
           description: A JSON array of ICU availability data
@@ -85,102 +84,107 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
+                  $ref: '#/components/responses/ICUData'
+  /country/{country_code}/{admin_level_1}/{admin_level_2}/{admin_level_3}:
+    get:
+      tags:
+        - ICUdata
+      description: "This endpoint helps to retrieve the info related to the ICU indicators at country level, at the specific admin level 1 and at a certain specific admin level 2 and 3"
+      operationId: get_level3_indicators
+      parameters:
+        - $ref: '#/components/parameters/CountryCode'
+        - $ref: '#/components/parameters/AdminLevel1'
+        - $ref: '#/components/parameters/AdminLevel2'
+        - $ref: '#/components/parameters/AdminLevel3'
+      responses:
+        '200':
+          description: A JSON array of ICU availability data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/responses/ICUData'                
   /country/{country_code}/hospital/{hospital_id}:
     get:
-      description: |-
-         This endpoint helps to retrieve the contact point (email and telephone number) and address info
-         related to a specific hospital and eventually a specific unit
-      operationId: get_hospital_information
       tags:
         - ContactData
+      description: |-
+         This endpoint helps to retrieve the contact point (email and telephone number) and address and geographical info related to a specific hospital and eventually a specific unit
+      operationId: get_hospital_information
       parameters:
-      - $ref: '#/components/parameters/AcceptLanguage'
       - $ref: '#/components/parameters/CountryCode'
-      - $ref: '#/components/parameters/AdminLevel1'
+      - $ref: '#/components/parameters/HospitalId'
       responses:
-        responses:
         '200':
-        description: A JSON array of ICU availability data
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
+          description: A JSON array of ICU availability data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/responses/ContactData'
+  /ICUdata-services/:  
+    get:
+      tags:
+        - ICUdata
+      description: "This endpoint helps to retrieve controlled vocabulary with the different ICU services available at european level. No parameter in input. The API responds with a list of three fields: Country;Label;Definition; Example: DE;ECMO;Ventilation through extracorporeal membrane oxygenation 
+      operationId: get_icu_types_dictionary
+      parameters:
+      responses:
+        '200':
+          description: A JSON array of ICU types per country
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/responses/ICUServiceData'
 components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+
   parameters:
     AdminLevel1:
-        name: admin_level_1
-        schema:
-          type: string
-          enum:
-          - nuts1
-          - nuts2
-          - writeme
-        in: path
-        required: true
+      description: The ESTAT-NUTS-classification level 1
+      name: admin_level_1
+      schema:
+        type: string
+      in: path
+      required: true
     AdminLevel2:
-        name: admin_level_2
-        schema:
-          type: string
-          enum:
-          - nuts1
-          - nuts2
-          - writeme
-        in: path
-        required: true
+      description: The ESTAT-NUTS-classification level 2
+      name: admin_level_2
+      schema:
+        type: string
+      in: path
+      required: true
+    AdminLevel3:
+      description: The ESTAT-NUTS-classification level 3
+      name: admin_level_3
+      schema:
+        type: string
+      in: path
+      required: true
     CountryCode:
       description: |-
         The two letter county https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Country_codes
       name: country_code
       schema:
-          $ref: '#/components/schemas/CountryCodes'
+      type: string
       in: path
       required: true
+    HospitalId:
+      description: |-
+        The Id of the hospital that is provided at national level
+      name: hospital_id
+      schema:
+        type: string
+      in: path
+      required: true  
   schemas:
-    CountryCodes:
-      type: string
-      enum:
-      - it
-      - en
-      - de
-    Observations:
-      description: |-
-        This is a collection of observations, together with metadata useful
-        to define a set of common properties for all the observations.
-        For the AdministrativeUnit, metadata include locality information
-      properties:
-        _meta:
-          $ref: '#/components/schemas/Metadata'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Observation'
-    ObservationDataset:
-      description: |-
-        An ObservationDataset contains a list of Observations: one for
-        each AdministrativeUnit.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Observations'
-    Metadata:
-      description: |-
-        Metadata associated to a given observation collection.
-      properties:
-        administrative_unit:
-          $ref: '#/components/schemas/AdministrativeUnit'
-        phenomenon_time_start:
-          $ref: '#/components/schemas/Temporal'
-        phenomenon_time_end:
-          $ref: '#/components/schemas/Temporal'
-        source:
-          type: string
-          format: uri
-          description: |-
-            The information source.
     Temporal:
       description: A temporal data that can be a date or a date-time
       oneOf:
@@ -188,3 +192,86 @@ components:
           format: date
         - type: string
           format: date-time
+  responses:        
+    ContactData: 
+      type: object
+      description: A JSON array of ICU availability data at the highest level
+      content:
+      properties:
+        country_id:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        admin_unit_level_1:
+          type: string
+        admin_unit_level_2:
+          type: string
+        admin_unit_level_3:
+          type: string  
+        telephone:
+          type: string
+        email:
+          type: string
+      examples:
+        country_id: IT
+        admin_unit_level_1: 'ITC'
+        admin_unit_level_2: 'ITC1'
+        admin_unit_level_3: 'ITC12'
+        telephone: '0039054039'
+        email: this@hospital_unit.it          
+    
+    ICUData:
+      type: object
+      description: ICU data at the requested level
+      content:
+      properties:
+        country_id:
+          type: string
+        hospital_id:
+          type: string
+        unit_id:
+          type: string
+        admin_unit_level_1:
+          type: string
+        admin_unit_level_2:
+          type: string
+        admin_unit_level_3:
+          type: string  
+        number_of_full_beds:
+          type: int
+        number_of_free_beds:
+          type: int
+        number_of_total_beds:
+          type: int  
+        ICU_service_type:
+          type: string    
+      examples:
+        country_id: IT
+        hospital_id: '123456'
+        unit_id: 'A'
+        admin_unit_level_1: 'ITC'
+        admin_unit_level_2: 'ITC1'
+        admin_unit_level_2: 'ITC12'
+        number_of_full_beds: 12
+        number_of_free_beds: 1
+        number_of_total_beds: 13
+        ICU_service_type: 'ECMO'
+        
+      ICUServiceData:
+      type: object
+      description: retrieve controlled vocabulary with the different ICU services available at european level
+      content:
+      properties:
+        country_id:
+          type: string
+        label:
+          type: string
+        definition:
+          type: string
+      examples:
+        country_id: 'DE'
+        label: 'ECMO'
+        definition: 'Ventilation through extracorporeal membrane oxygenation'
+      
