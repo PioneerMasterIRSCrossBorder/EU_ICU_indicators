@@ -1,5 +1,6 @@
-@prefix : <https://mariaclaudia.it/ICU_model> .
+@prefix : <https://pioneers.eu/ICU_model> .
 @prefix is: <http://joinup.eu/is/> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix ns: <http://creativecommons.org/ns#> .
 @prefix ns1: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -22,12 +23,14 @@
 @prefix language: <http://joinup.eu/language/> .
 @prefix powder-s: <http://www.w3.org/2007/05/powder-s#> .
 @prefix solution: <http://joinup.eu/solution/> .
-@base <https://mariaclaudia.it/ICU_model> .
+@base <https://pioneers.eu/ICU_model> .
 
-<https://mariaclaudia.it/ICU_model#> rdf:type owl:Ontology ;
+<https://pioneers.eu/ICU_model#> rdf:type owl:Ontology ;
                                      owl:imports <http://www.w3.org/ns/locn> ;
                                      terms:language <http://publications.europa.eu/resource/authority/language/ENG> ;
                                      terms:title "EU ICU availability: first prototype"@en ;
+                                     dct:title "EU ICU bedding availability "@en ;
+                                     dct:description "A first attempt to model specific aspects of the pandemic related to the ICU bedding availability data at EU level "@en ;
                                      dcat:keyword "COVID-19"@en ,
                                                   "Cross Border"@en ,
                                                   "Health data"@en ;
@@ -155,63 +158,63 @@ foaf:Image rdf:type owl:AnnotationProperty .
                                      rdfs:range <http://www.w3.org/ns/locn#Geometry> .
 
 
-###  https://mariaclaudia.it/ICU_model#hasSite
-<https://mariaclaudia.it/ICU_model#hasSite> rdf:type owl:ObjectProperty ;
-                                                                                          rdfs:domain <https://mariaclaudia.it/ICU_model#Hospital> ;
-                                                                                          rdfs:range <https://mariaclaudia.it/ICU_model#Site> ;
+###  https://pioneers.eu/ICU_model#hasSite
+<https://pioneers.eu/ICU_model#hasSite> rdf:type owl:ObjectProperty ;
+                                                                                          rdfs:domain <https://pioneers.eu/ICU_model#Hospital> ;
+                                                                                          rdfs:range <https://pioneers.eu/ICU_model#Site> ;
                                                                                           rdfs:label "hasSite"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#hasGeometry
-<https://mariaclaudia.it/ICU_model#hasGeometry> rdf:type owl:ObjectProperty ;
+###  https://pioneers.eu/ICU_model#hasGeometry
+<https://pioneers.eu/ICU_model#hasGeometry> rdf:type owl:ObjectProperty ;
                                                                                           rdfs:subPropertyOf owl:topObjectProperty ;
                                                                                           rdfs:domain terms:Location ;
                                                                                           rdfs:range <http://www.w3.org/ns/locn#Geometry> ;
                                                                                           rdfs:label "hasGeometry"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#isSite
-<https://mariaclaudia.it/ICU_model#isSite> rdf:type owl:ObjectProperty ;
+###  https://pioneers.eu/ICU_model#isSite
+<https://pioneers.eu/ICU_model#isSite> rdf:type owl:ObjectProperty ;
                                                                                           rdfs:subPropertyOf owl:topObjectProperty ;
-                                                                                          rdfs:domain <https://mariaclaudia.it/ICU_model#Site> ;
+                                                                                          rdfs:domain <https://pioneers.eu/ICU_model#Site> ;
                                                                                           rdfs:label "isSite"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#hasUnit
-<https://mariaclaudia.it/ICU_model#hasUnit> rdf:type owl:ObjectProperty ;
+###  https://pioneers.eu/ICU_model#hasUnit
+<https://pioneers.eu/ICU_model#hasUnit> rdf:type owl:ObjectProperty ;
                                                         rdfs:subPropertyOf owl:topObjectProperty ;
-                                                        rdfs:domain <https://mariaclaudia.it/ICU_model#Site> ;
-                                                        rdfs:range <https://mariaclaudia.it/ICU_model#Unit> ;
+                                                        rdfs:domain <https://pioneers.eu/ICU_model#Site> ;
+                                                        rdfs:range <https://pioneers.eu/ICU_model#Unit> ;
                                                         rdfs:label "hasUnit"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#hasLocation
-<https://mariaclaudia.it/ICU_model#hasLocation>  rdf:type owl:ObjectProperty ;
+###  https://pioneers.eu/ICU_model#hasLocation
+<https://pioneers.eu/ICU_model#hasLocation>  rdf:type owl:ObjectProperty ;
                                                         rdfs:subPropertyOf owl:topObjectProperty ;
                                                         rdfs:domain terms:Location ;
-                                                        rdfs:range <https://mariaclaudia.it/ICU_model#Hospital> ,
-                                                                   <https://mariaclaudia.it/ICU_model#Site> ;
+                                                        rdfs:range <https://pioneers.eu/ICU_model#Hospital> ,
+                                                                   <https://pioneers.eu/ICU_model#Site> ;
                                                         rdfs:label "hasLocation"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#hasService
-<https://mariaclaudia.it/ICU_model#hasService>  rdf:type owl:ObjectProperty ;
-                                                        rdfs:domain <https://mariaclaudia.it/ICU_model#Unit> ;
-                                                        rdfs:range <https://mariaclaudia.it/ICU_model#Service> ;
+###  https://pioneers.eu/ICU_model#hasService
+<https://pioneers.eu/ICU_model#hasService>  rdf:type owl:ObjectProperty ;
+                                                        rdfs:domain <https://pioneers.eu/ICU_model#Unit> ;
+                                                        rdfs:range <https://pioneers.eu/ICU_model#Service> ;
                                                         rdfs:label "hasService"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#hasICUType
-<https://mariaclaudia.it/ICU_model#hasICUType>  rdf:type owl:ObjectProperty ;
+###  https://pioneers.eu/ICU_model#hasICUType
+<https://pioneers.eu/ICU_model#hasICUType>  rdf:type owl:ObjectProperty ;
                                                         rdfs:domain :ICUService ;
-                                                        rdfs:range <https://mariaclaudia.it/ICU_model#ICUType> ;
+                                                        rdfs:range <https://pioneers.eu/ICU_model#ICUType> ;
                                                         rdfs:label "hasICUType"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#hasContactPoint
-<https://mariaclaudia.it/ICU_model#hasContactPoint>  rdf:type owl:ObjectProperty ;
-                                                        rdfs:domain <https://mariaclaudia.it/ICU_model#Hospital> ,
-                                                                    <https://mariaclaudia.it/ICU_model#Unit> ;
+###  https://pioneers.eu/ICU_model#hasContactPoint
+<https://pioneers.eu/ICU_model#hasContactPoint>  rdf:type owl:ObjectProperty ;
+                                                        rdfs:domain <https://pioneers.eu/ICU_model#Hospital> ,
+                                                                    <https://pioneers.eu/ICU_model#Unit> ;
                                                         rdfs:range <http://www.w3.org/ns/dcat#contactPoint> ;
                                                         rdfs:label "hasContactPoint"@en .
 
@@ -239,51 +242,51 @@ foaf:Image rdf:type owl:AnnotationProperty .
                                      rdfs:subPropertyOf owl:topDataProperty .
 
 
-###  https://mariaclaudia.it/ICU_model#hospitalid
-<https://mariaclaudia.it/ICU_model#hospitalid> rdf:type owl:DatatypeProperty ;
-                                                                                        rdfs:domain <https://mariaclaudia.it/ICU_model#Hospital> ;
+###  https://pioneers.eu/ICU_model#hospitalid
+<https://pioneers.eu/ICU_model#hospitalid> rdf:type owl:DatatypeProperty ;
+                                                                                        rdfs:domain <https://pioneers.eu/ICU_model#Hospital> ;
                                                                                         rdfs:range rdfs:Literal ;
                                                                                         rdfs:label "hospital id"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#telephone
-<https://mariaclaudia.it/ICU_model#telephone> rdf:type owl:DatatypeProperty ;
+###  https://pioneers.eu/ICU_model#telephone
+<https://pioneers.eu/ICU_model#telephone> rdf:type owl:DatatypeProperty ;
                                                                                         rdfs:domain <http://www.w3.org/ns/dcat#contactPoint> ;
                                                                                         rdfs:range rdfs:Literal ;
                                                                                         rdfs:label "telephone"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#unitid
-<https://mariaclaudia.it/ICU_model#unitid> rdf:type owl:DatatypeProperty ;
+###  https://pioneers.eu/ICU_model#unitid
+<https://pioneers.eu/ICU_model#unitid> rdf:type owl:DatatypeProperty ;
                                                                                         rdfs:subPropertyOf owl:topDataProperty ;
-                                                                                        rdfs:domain <https://mariaclaudia.it/ICU_model#Unit> ;
+                                                                                        rdfs:domain <https://pioneers.eu/ICU_model#Unit> ;
                                                                                         rdfs:range rdfs:Literal ;
                                                                                         rdfs:label "unit id"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#mail
-<https://mariaclaudia.it/ICU_model#mail> rdf:type owl:DatatypeProperty ;
+###  https://pioneers.eu/ICU_model#mail
+<https://pioneers.eu/ICU_model#mail> rdf:type owl:DatatypeProperty ;
                                                                                         rdfs:domain <http://www.w3.org/ns/dcat#contactPoint> ;
                                                                                         rdfs:range rdfs:Literal ;
                                                                                         rdfs:label "mail"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#number_of_ICU_full_beds
-<https://mariaclaudia.it/ICU_model#number_of_ICU_full_beds> rdf:type owl:DatatypeProperty ;
+###  https://pioneers.eu/ICU_model#number_of_ICU_full_beds
+<https://pioneers.eu/ICU_model#number_of_ICU_full_beds> rdf:type owl:DatatypeProperty ;
                                                       rdfs:domain :ICUService ;
                                                       rdfs:range xsd:int ;
                                                       rdfs:label "number_of_ICU_full_beds"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#number_of_ICU_total_beds
-<https://mariaclaudia.it/ICU_model#number_of_ICU_total_beds> rdf:type owl:DatatypeProperty ;
+###  https://pioneers.eu/ICU_model#number_of_ICU_total_beds
+<https://pioneers.eu/ICU_model#number_of_ICU_total_beds> rdf:type owl:DatatypeProperty ;
                                                       rdfs:domain :ICUService ;
                                                       rdfs:range xsd:int ;
                                                       rdfs:label "number_of_ICU_total_beds"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#number_of_ICU_free_beds
-<https://mariaclaudia.it/ICU_model#number_of_ICU_free_beds> rdf:type owl:DatatypeProperty ;
+###  https://pioneers.eu/ICU_model#number_of_ICU_free_beds
+<https://pioneers.eu/ICU_model#number_of_ICU_free_beds> rdf:type owl:DatatypeProperty ;
                                                       rdfs:domain :ICUService ;
                                                       rdfs:range xsd:int ;
                                                       rdfs:label "number_of_ICU_free_beds"@en .
@@ -305,34 +308,34 @@ terms:Location rdf:type owl:Class .
 dcat:Dataset rdf:type owl:Class .
 
 
-###  https://mariaclaudia.it/ICU_model#Hospital
-<https://mariaclaudia.it/ICU_model#Hospital> rdf:type owl:Class ;
+###  https://pioneers.eu/ICU_model#Hospital
+<https://pioneers.eu/ICU_model#Hospital> rdf:type owl:Class ;
                                             rdfs:label "Hospital"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#ICUType
-<https://mariaclaudia.it/ICU_model#ICUType> rdf:type owl:Class ;
+###  https://pioneers.eu/ICU_model#ICUType
+<https://pioneers.eu/ICU_model#ICUType> rdf:type owl:Class ;
                                            rdfs:label "ICUType"@en .
 
 
-###  https://mariaclaudia.it/ICU_model##Site
-<https://mariaclaudia.it/ICU_model##Site> rdf:type owl:Class ;
+###  https://pioneers.eu/ICU_model##Site
+<https://pioneers.eu/ICU_model##Site> rdf:type owl:Class ;
                                                                                  rdfs:label "Site"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#Service
-<https://mariaclaudia.it/ICU_model#Service> rdf:type owl:Class ;
+###  https://pioneers.eu/ICU_model#Service
+<https://pioneers.eu/ICU_model#Service> rdf:type owl:Class ;
                                            rdfs:label "Service"@en .
 
 
-###  https://mariaclaudia.it/ICU_model#Unit
-<https://mariaclaudia.it/ICU_model#Unit> rdf:type owl:Class ;
+###  https://pioneers.eu/ICU_model#Unit
+<https://pioneers.eu/ICU_model#Unit> rdf:type owl:Class ;
                                         rdfs:label "Unit"@en .
 
 
-###  https://mariaclaudia.it/ICU_model##ICUService
-<https://mariaclaudia.it/ICU_model#ICUService> rdf:type owl:Class ;
-                                               rdfs:subClassOf <https://mariaclaudia.it/ICU_model#Service> ;
+###  https://pioneers.eu/ICU_model##ICUService
+<https://pioneers.eu/ICU_model#ICUService> rdf:type owl:Class ;
+                                               rdfs:subClassOf <https://pioneers.eu/ICU_model#Service> ;
                                                rdfs:label "ICUService"@en .
 
 
@@ -375,5 +378,5 @@ dcat:Dataset rdf:type owl:Class .
                                                                               "European Commission" ,
                                                                               "core vocabularies" ;
                                                                  foaf:Image "504215"^^xsd:string .
-<https://mariaclaudia.it/ICU_model#> rdf:type owl:NamedIndividual ,
+<https://pioneers.eu/ICU_model#> rdf:type owl:NamedIndividual ,
                                             adms:Asset .
