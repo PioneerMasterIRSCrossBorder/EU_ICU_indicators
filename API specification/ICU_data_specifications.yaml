@@ -4,7 +4,7 @@ info:
   title: EU ICU availability API
   x-summary: EU ICU availability API
   contact:
-    name: Maria Claudia Bodino, Viktor, Pablo, Stefan
+    name: Maria Claudia Bodino, Stefan Dedovic,Viktor De Naeyer, Pablo Hartill Montalvo
     email: mariaclaudia@teamdigitale.governo.it
   description: |-
     This API provides different indicators related to the Intensive Care Unit availability in the EU member states
@@ -47,7 +47,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/responds/ICUData'
+                  $ref: '#/components/schemas/ICUData'
   /country/{country_code}/{admin_level_1}:
     get:
       tags:
@@ -65,7 +65,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/responses/ICUData'
+                  $ref: '#/components/schemas/ICUData'
   /country/{country_code}/{admin_level_1}/{admin_level_2}:
     get:
       tags:
@@ -84,7 +84,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/responses/ICUData'
+                  $ref: '#/components/schemas/ICUData'
   /country/{country_code}/{admin_level_1}/{admin_level_2}/{admin_level_3}:
     get:
       tags:
@@ -104,7 +104,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/responses/ICUData'                
+                  $ref: '#/components/schemas/ICUData'                
   /country/{country_code}/hospital/{hospital_id}:
     get:
       tags:
@@ -123,14 +123,18 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/responses/ContactData'
+                  $ref: '#/components/schemas/ContactData'
   /ICUdata-services/:  
     get:
       tags:
         - ICUdata
-      description: "This endpoint helps to retrieve controlled vocabulary with the different ICU services available at european level. No parameter in input. The API responds with a list of three fields: Country;Label;Definition; Example: DE;ECMO;Ventilation through extracorporeal membrane oxygenation 
+      description: |-
+        This endpoint helps to retrieve controlled vocabulary with the different ICU services available at european level. 
+        The API responds with a list of three fields: 
+          Country;Label;Definition; 
+        Example: 
+          DE;ECMO;Ventilation through extracorporeal membrane oxygenation
       operationId: get_icu_types_dictionary
-      parameters:
       responses:
         '200':
           description: A JSON array of ICU types per country
@@ -139,7 +143,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/responses/ICUServiceData'
+                  $ref: '#/components/schemas/ICUServiceData'
 components:
   securitySchemes:
     BasicAuth:
@@ -173,7 +177,7 @@ components:
         The two letter county https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Country_codes
       name: country_code
       schema:
-      type: string
+        type: string
       in: path
       required: true
     HospitalId:
@@ -192,11 +196,9 @@ components:
           format: date
         - type: string
           format: date-time
-  responses:        
     ContactData: 
       type: object
       description: A JSON array of ICU availability data at the highest level
-      content:
       properties:
         country_id:
           type: string
@@ -214,7 +216,7 @@ components:
           type: string
         email:
           type: string
-      examples:
+      example:
         country_id: IT
         admin_unit_level_1: 'ITC'
         admin_unit_level_2: 'ITC1'
@@ -225,7 +227,6 @@ components:
     ICUData:
       type: object
       description: ICU data at the requested level
-      content:
       properties:
         country_id:
           type: string
@@ -240,29 +241,29 @@ components:
         admin_unit_level_3:
           type: string  
         number_of_full_beds:
-          type: int
+          type: integer
         number_of_free_beds:
-          type: int
+          type: integer
         number_of_total_beds:
-          type: int  
+          type: integer 
         ICU_service_type:
           type: string    
-      examples:
+      example:
         country_id: IT
         hospital_id: '123456'
         unit_id: 'A'
         admin_unit_level_1: 'ITC'
         admin_unit_level_2: 'ITC1'
-        admin_unit_level_2: 'ITC12'
+        admin_unit_level_3: 'ITC12'
         number_of_full_beds: 12
         number_of_free_beds: 1
         number_of_total_beds: 13
         ICU_service_type: 'ECMO'
         
-      ICUServiceData:
+    ICUServiceData:
       type: object
-      description: retrieve controlled vocabulary with the different ICU services available at european level
-      content:
+      description: |-
+        retrieve controlled vocabulary with the different ICU services available at european level
       properties:
         country_id:
           type: string
@@ -270,8 +271,7 @@ components:
           type: string
         definition:
           type: string
-      examples:
+      example:
         country_id: 'DE'
         label: 'ECMO'
         definition: 'Ventilation through extracorporeal membrane oxygenation'
-      
