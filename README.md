@@ -1,4 +1,8 @@
-# Integrated Research Seminar - Seminar Thesis-  Cross Border Service group
+# Integrated Research Seminar 
+# Cross Border Service group
+
+Date of submission: 2020-07-17
+
 ## Sharing dynamic ICU data across cross-border systems: a semantic data model and an OpenAPI specification
 
 
@@ -17,7 +21,7 @@ Tutor: Dr. Hendrik Scholta
 
 Supervisor: Prof. Dr. Dr. h.c Dr. h. c. Jörg Becker
 
-Date of submission: 2020-07-17
+
 
 ---
 
@@ -104,6 +108,8 @@ The first prototype of the semantic model and of the controlled dictionary is av
 
 The Terse RDF Triple Language (Turtle, a syntax and file format for expressing data in the Resource Description Framework) resource is located under the folder “Ontologies/latest” and can be downloaded and navigated visually using WebVOWL, a web application available at the following link: http://www.visualdataweb.de/webvowl/   as in the figure presented below in Figure 5. Additionally, an offline version of the ontology in Turtle format is available in
 
+---
+
 ### OPEN API Specification
 
 OpenAPI Specification prototype 
@@ -146,18 +152,16 @@ Other components
 Path items are particularly important in order to quickly understand which resources the API will provide; they represent the endpoints under it is possible to specify HTTP verbs for obtaining the available resources (Swagger Hub, Unknown). 
 
  
-
 In particular, the following path (URL) will be available: 
 
-
-ICUdata-services/  
+```
+- ICUdata-services/  
  
 Retrieve the controlled vocabulary with the different ICU services available. 
 
-`ICUdata/  
+- ICUdata/  
 
 Retrieve the ICU date related to the three administrative levels available in NUTS classifications. It is possible to retrieve data in a specific time range. 
-
 
 /country/{country_code}? 
 
@@ -167,16 +171,14 @@ Retrieve the ICU date related to the three administrative levels available in NU
 
 /country/{country_code}/{admin_level_1}/{admin_level_2} /{admin_level_3} 
 
- 
-
-Hospitals/ 
+ - Hospitals/ 
 
 Retrieve the info related to a specific hospital and unit (contact point and address information). In order to query a single hospital, it is necessary to express the country which the hospital belongs to. For every country, a dataset containing the list and ids of every hospital and clinic should be provided. 
 
  
 /country/{country_code}/hospital/{hospital_id} 
 
- 
-`
+```
+
 A final note is about the geographical classification that can be used in the model and consequently in the API. Related to the purpose of the research, a cross-border classification is represented by the NUTS classification (Nomenclature of territorial units for statistics) provided by Eurostat that provides a hierarchical system also based on population thresholds for the purpose of socio-economic analyses of the regions dividing regions at three different levels (NUTS 1, 2 and 3 respectively, moving from larger to smaller territorial units)27. Furthermore, Eurostat publishes the NUTS classification in Linked Data28 and a navigable version of the classification is provided at the following link: https://ipsoeu.github.io/ramon-ld/nuts  
 
