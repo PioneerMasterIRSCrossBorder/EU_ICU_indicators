@@ -1,5 +1,5 @@
-# EU ICU indicators
-## Design recommendations for sharing dynamic ICU data in EU cross border health information systems
+# Sharing dynamic ICU data across cross-border systems: a semantic data model and an OpenAPI specification
+
 
 Crises are often times of rethinking the current system and the breeding ground of innovation. Arguably one of the sectors most defined by and created for emergencies is the health sector. 
 Health systems are created to accommodate for a certain expected amount of these emergencies, however, occasionally events happen straining the existing capacity. 
