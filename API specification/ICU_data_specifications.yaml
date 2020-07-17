@@ -198,9 +198,13 @@ components:
           format: date-time
     ContactData: 
       type: object
-      description: A JSON array of ICU availability data at the highest level
+      description: A JSON array with the contact information of the hospital (and eventually a specfic unit)
       properties:
         country_id:
+          type: string
+        hospital_id:
+          type: string
+        unit:
           type: string
         latitude:
           type: string
@@ -218,6 +222,8 @@ components:
           type: string
       example:
         country_id: IT
+        hospital_id: '00001'
+        unit: 'A - ICU'
         admin_unit_level_1: 'ITC'
         admin_unit_level_2: 'ITC1'
         admin_unit_level_3: 'ITC12'
