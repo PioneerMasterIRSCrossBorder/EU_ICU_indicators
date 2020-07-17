@@ -3,15 +3,12 @@
 - [University of Münster - Germany](https://www.uni-muenster.de/en/)
 - [Taltech University of Technology  - Estonia](https://www.taltech.ee)
 
-## Integrated Research Seminar 
-## Cross Border Service group
+## Integrated Research Seminar - Cross Border Service group
 
 Date of submission: 2020-07-17
 
 ## Sharing dynamic ICU data across cross-border systems: a semantic data model and an OpenAPI specification
 
-
----
 Group members:
 
 - Maria Claudia Bodino  
