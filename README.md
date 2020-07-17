@@ -1,5 +1,10 @@
-# Integrated Research Seminar 
-# Cross Border Service group
+# Erasmus Mundus Master of Science in Public Sector Innovation and eGovernance (PIONEER) 
+- [Ku Leuven University - Belgium](https://www.kuleuven.be/kuleuven/)
+- [University of Münster - Germany](https://www.uni-muenster.de/en/)
+- [Taltech University of Technology  - Estonia](https://www.taltech.ee)
+
+## Integrated Research Seminar 
+## Cross Border Service group
 
 Date of submission: 2020-07-17
 
