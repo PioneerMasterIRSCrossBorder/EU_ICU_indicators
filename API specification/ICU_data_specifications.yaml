@@ -117,7 +117,7 @@ paths:
       - $ref: '#/components/parameters/HospitalId'
       responses:
         '200':
-          description: A JSON array of ICU availability data
+          description: A JSON array of Hospital (and eventually units) with contact info
           content:
             application/json:
               schema:
